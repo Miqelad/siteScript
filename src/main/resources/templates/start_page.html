@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head(title='Summing')"></head>
+<script type="text/javascript" th:src="@{/js/action.js}"></script>
+
+<body>
+<div th:replace="fragments :: navbar"></div>
+<div class="container text-center">
+<p> Enter numbers for summing</p>
+<form name="sum" th:method="POST" th:action="@{/}" th:object="${number}">
+<div>
+    <label for="first">First number</label>
+    <input type="number" th:field="*{firstNumber}" id="first" >
+    <label for="second">Second number</label>
+    <input type="number" th:field="*{secondNumber}" id="second" >
+    <input type="hidden" th:field="*{summa}"  id="summa">
+    <br/>
+    <input  type="submit" th:onclick="showAlert()" value="Summing">
+</div>
+
+    <div sec:authorize="isAuthenticated()">
+        Welcome, <span sec:authentication="name">Username</span>
+    </div>
+
+</form>
+
+
+</div>
+<div >
+<ul  th:each="graph : ${graphs}" >
+    <li class="graphics" th:text="${graph.summa}"
+        th:value="${graph.summa}" >Number</li>
+    <li class="time" th:text="${graph.localDateTime}"
+        th:value="${graph.localDateTime}" >Time</li>
+</ul>
+</div>
+<div id="chart"></div>
+<script type="text/javascript" th:src="@{/js/chart.js}"></script>
+</body>
+</html>

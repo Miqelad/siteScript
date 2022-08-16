@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head(title='Person')"></head>
+<!-- Красивое представление таблицы -->
+<style>
+  table {
+    border-collapse: separate;
+  }
+  th {
+    border: 3px solid Lavender;
+    background: AliceBlue;
+    padding: 10px;
+    text-align: center;
+  }
+  td {
+    border: 2px solid Lavender;
+    background: MintCream;
+    padding: 10px;
+    text-align: center;
+  }
+
+</style>
+<body>
+<div th:replace="fragments :: navbar"></div>
+<div class="container text-center">
+<table>
+    <tr>
+        <th>User</th>
+        <div sec:authorize="hasAuthority('ADMIN')">
+            <th>Role</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </div>
+    </tr>
+    <tr th:each="person: ${persons}">
+        <td th:text="${person.username}"></td>
+        <div sec:authorize="hasAuthority('ADMIN')">
+            <td th:text="${person.roles}"></td>
+            <td>
+                <form th:action="@{/user/edit/{id}(id=${person.id})}">
+                    <input type="submit" value="EDIT"/>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/user/{id}(id=${person.id})}" th:method="DELETE">
+                    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                    <input type="submit" value="DELETE"/>
+                </form>
+            </td>
+
+        </div>
+    </tr>
+</table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head(title='Login')"></head>
+<body>
+<div th:replace="fragments :: navbar"></div>
+<div class="container text-center">
+<form th:action="@{/login}" th:method="post">
+    <div><label>Login: <input type="text" name="username"/></label></div>
+    <div><label>Password: <input type="password" name="password"/></label></div>
+    <!--Обязательное поле защита запроса, без него не будет работать-->
+    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+    <div><input type="submit" value="Sign In"></div>
+</form>
+
+
+</div>
+</body>
+</html>

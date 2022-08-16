@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments :: head(title='Update')"></head>
+<body>
+<div th:replace="fragments :: navbar"></div>
+<div class="container text-center">
+This page Only Admin
+
+
+    <form sec:authorize="hasAuthority('ADMIN')" th:method="PATCH" th:action="@{/user/edit/{id}(id=*{id})}" th:object="${person}">
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}">error</div>
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error</div>
+        <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}">error</div>
+        <div><label>Login: <input type="text" th:field="*{username}" id="username"/></label></div>
+        <div><label>Password: <input type="password" th:field="*{password}" id="password"/></label></div>
+        <div><label>Roles:
+            <input type="checkbox"  name="roles"
+                   th:each="role : ${roles}"
+                   th:value="${role}"
+                   th:text="${role.name}"
+                   id="name"
+            />
+        </label></div>
+        <div><input type="submit" value="Update"></div>
+    </form>
+
+</div>
+</body>
+</html>
