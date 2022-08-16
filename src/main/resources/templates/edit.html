@@ -10,7 +10,6 @@ This page Only Admin
     <form sec:authorize="hasAuthority('ADMIN')" th:method="PATCH" th:action="@{/user/edit/{id}(id=*{id})}" th:object="${person}">
         <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}">error</div>
         <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error</div>
-        <div th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}">error</div>
         <div><label>Login: <input type="text" th:field="*{username}" id="username"/></label></div>
         <input type="hidden" th:field="*{password}" id="password"/>
         <div><label>Roles:

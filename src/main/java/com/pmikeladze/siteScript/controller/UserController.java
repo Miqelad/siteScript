@@ -12,6 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -24,7 +27,8 @@ public class UserController {
 
     @ModelAttribute
     public void addAttributes(Model model) {
-        model.addAttribute("roles", Role.values());
+        ArrayList<String> list=new ArrayList(Arrays.asList(Role.values()));
+        model.addAttribute("roles", list);
         model.addAttribute("persons", userRepo.findAll());
     }
 
@@ -41,14 +45,18 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String addUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, @RequestParam("roles") List<String> role, Model model) {
+    public String addUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, @RequestParam(value = "roles", required = false) List<String> role, Model model) {
         User userFromDb = userRepo.findByUsername(user.getUsername());
+        if (role==null) {
+            user.setRoles(Collections.singleton(Role.USER));
+        } else {
+            user.getRoles().clear();
+            role.forEach(e -> user.getRoles().add(Role.valueOf(e)));
+        }
         if (bindingResult.hasErrors()) {
             return "registration";
         }
         user.setActive(true);
-        user.getRoles().clear();
-        role.forEach(e -> user.getRoles().add(Role.valueOf(e)));
         userRepo.save(user);
         return "redirect:/login";
     }
@@ -71,25 +79,19 @@ public class UserController {
     }
 
     @PatchMapping("/edit/{id}")
-    public String updateUser(@ModelAttribute("person") @Valid User person, BindingResult bindingResult, @RequestParam("roles") List<String> role, @PathVariable("id") Long id) {
+    public String updateUser(@ModelAttribute("person") @Valid User person, BindingResult bindingResult, @RequestParam(value = "roles" , required = false) ArrayList<String> role, @PathVariable("id") Long id) {
         User user = userRepo.findById(person.getId()).get();
-        log.info("user" + userRepo.findById(id).get().toString());
-
-        if (bindingResult.hasErrors()) {
+        if (!user.getUsername().equals("Admin") ) {
+        if (bindingResult.hasErrors() || role==null) {
             return "edit";
         }
-
-        log.info(role.toString());
-        if (!user.getUsername().equals("Admin")) {
+            user.getRoles().clear();role.forEach(e -> user.getRoles().add(Role.valueOf(e)));
             user.setActive(true);
             user.setUsername(person.getUsername());
             user.setPassword(person.getPassword());
-            user.getRoles().clear();
-            role.forEach(e -> user.getRoles().add(Role.valueOf(e)));
+            log.info("User" + user.getUsername().toString());
             userRepo.save(user);
         }
-
-
         return "redirect:/user";
     }
 }

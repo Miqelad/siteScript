@@ -36,7 +36,6 @@ public class User implements UserDetails {
     @CollectionTable(name = "usr_role", joinColumns = @JoinColumn(name = "user_id"))
     /*Указываем, что это enum и хранить мы его хотим в виде строки*/
     @Enumerated(EnumType.STRING)
-    @NotEmpty(message = "Choose Role")
     private Set<Role> roles;
 
     @Override
