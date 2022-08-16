@@ -2,7 +2,6 @@ package com.pmikeladze.siteScript.repository;
 
 import com.pmikeladze.siteScript.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 
