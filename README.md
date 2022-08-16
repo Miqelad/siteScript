@@ -8,3 +8,19 @@
 <li>Добавить любых CSS-стилей для элементов страницы.</li>
 <li>Подключить на странице график (https://apexcharts.com/javascript-chart-demos/line-charts/basic/) и выводить на нём произвольные данные, полученные с POST-контроллера.</li>
 </ul>
+
+  <ul>Стэк:
+  <li>  </li>
+  </ul>
+  
+    <ul>Настройка:
+  <li><a href="https://hub.docker.com/repository/docker/granddfat/site">Docker</a> </li>
+  </ul>
+  
+<ul>Вводная часть:
+  <li>login/pasword : Admin,Admin в дальнейшем можно создавать других пользователей с правами, все права у роли ADMIN </li>
+  <li>localhost:8080 Вводим числа, отображается график с веденными ранее суммами</li>
+  <li>Подключен Bootstrap5</li>
+  <li>Подключен график</li>
+  <li>Шаблонизатор Thymeleaf</li>
+  </ul>
