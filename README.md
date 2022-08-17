@@ -33,3 +33,10 @@
   <li>localhost:8080 : Предоставление данных для ввода и отображение графика(Отправляется два input`a методом POST, js обрабатывает и сумирует их, jpa записывает сумму в БД, выводится график с введенными ранее сумами)</li>
   </ul>
   
+  <ul>Endpoints:
+  <li>http://localhost:8080/login - Вход Role:USER,ADMIN </li>
+  <li>http://localhost:8080/ - Суммирование и графики Role:USER,ADMIN </li>
+  <li>http://localhost:8080/user/registration - Регистрация новых пользователей Role:ADMIN </li>
+  <li>http://localhost:8080/user - Вывод всех пользователей с дальнейшим изменением(login:Admin учетка не удаляемая) Role: ADMIN </li>
+  </ul>
+  
