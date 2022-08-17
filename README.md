@@ -15,21 +15,21 @@
       <li>Spring security</li>
         <li>Spring jpa</li>
           <li>Spring validation</li>
-          <li>Thymeleaf</li>
           <li>Js+css+html</li>
           <li>Maven</li>
-          <li>h2</li>
-          
+          <li>h2</li>         
+    <li>Подключен Bootstrap5</li>
+  <li>Подключен график</li>
+  <li>Шаблонизатор Thymeleaf</li>
   </ul>
   
-    <ul>Настройка:
-  <li><a href="https://hub.docker.com/repository/docker/granddfat/site">Docker</a> </li>
+  <ul> Docker:
+  <li>Dockerfile:Dockerfile in root or use <a href="https://hub.docker.com/repository/docker/granddfat/site">DockerHub</a> </li>
   </ul>
   
 <ul>Вводная часть:
   <li>login/pasword : Admin,Admin в дальнейшем можно создавать других пользователей с правами, все права у роли ADMIN </li>
-  <li>localhost:8080 Вводим числа, отображается график с веденными ранее суммами</li>
-  <li>Подключен Bootstrap5</li>
-  <li>Подключен график</li>
-  <li>Шаблонизатор Thymeleaf</li>
+  <li>На главной странице есть nav bar, отображение распределено по ролям</li>
+  <li>localhost:8080 : Предоставление данных для ввода и отображение графика(Отправляется два input`a методом POST, js обрабатывает и сумирует их, jpa записывает сумму в БД, выводится график с введенными ранее сумами)</li>
   </ul>
+  
