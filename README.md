@@ -1,4 +1,4 @@
-<ul>Цель:
+<ul>Описание:
 <li>Создать проект на Java с использованием Spring Boot</li>
 <li>На Java разработать 2 контроллера (GET-получение тестовой страницы, POST-получение двух параметров в запросе, их суммирование и отправка результата)</li>
 <li>Создать одну html-страницу с тремя элементами (2 input с типом number и button)</li>
@@ -10,7 +10,16 @@
 </ul>
 
   <ul>Стэк:
-  <li>  </li>
+  <li>Spring boot</li>
+    <li>Spring web</li>
+      <li>Spring security</li>
+        <li>Spring jpa</li>
+          <li>Spring validation</li>
+          <li>Thymeleaf</li>
+          <li>Js+css+html</li>
+          <li>Maven</li>
+          <li>h2</li>
+          
   </ul>
   
     <ul>Настройка:
